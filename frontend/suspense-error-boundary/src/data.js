@@ -23,7 +23,7 @@ async function getData(url) {
 
 async function getBio() {
   // Add a fake delay to make waiting noticeable.
-  await new Promise((resolve) => {
+  await new Promise((resolve, rejected) => {
     setTimeout(resolve, 500);
   });
 
@@ -35,8 +35,8 @@ async function getBio() {
 
 async function getAlbums() {
   // Add a fake delay to make waiting noticeable.
-  await new Promise((resolve) => {
-    setTimeout(resolve, 3000);
+  await new Promise((resolve, rejected) => {
+    setTimeout(() => rejected("aa"), 1000);
   });
 
   return [

@@ -1,20 +1,15 @@
 import { fetchData } from "./data.js";
 
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
-
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
+  console.log(albums);
   return (
     <ul>
-      {albums.map((album) => (
+      {/* {albums.map((album) => (
         <li key={album.id}>
           {album.title} ({album.year})
         </li>
-      ))}
+      ))} */}
     </ul>
   );
 }
@@ -25,6 +20,7 @@ function use(promise) {
   if (promise.status === "fulfilled") {
     return promise.value;
   } else if (promise.status === "rejected") {
+    console.log(promise.reason);
     throw promise.reason;
   } else if (promise.status === "pending") {
     throw promise;
@@ -38,6 +34,7 @@ function use(promise) {
       (reason) => {
         promise.status = "rejected";
         promise.reason = reason;
+        console.log(reason);
       }
     );
     throw promise;

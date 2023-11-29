@@ -7,7 +7,7 @@ import { fetchData } from "./data.js";
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
-  const bio = use(fetchData(`/${artistId}/bio`));
+    const bio = use(fetchData(`/${artistId}/bio`));
   return (
     <section>
       <p className="bio">{bio}</p>
