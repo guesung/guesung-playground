@@ -1,0 +1,38 @@
+<html>
+
+<body>
+  <ul>
+    <li>동기 코드 : <button id="sync">0</button></li>
+    <li>태스크 : <button id="macrotask">0</button></li>
+    <li>마이크로 태스크 : <button id="microtask">0</button></li>
+  </ul>
+</body>
+<script>
+  const sync = document.getElementById('sync');
+  const macrotask = document.getElementById('macrotask');
+  const microtask = document.getElementById('microtask');
+
+  sync.addEventListener('click', function () {
+    for (let i = 0; i < 100000; i++) {
+      sync.innerHTML = i;
+    }
+  })
+
+  macrotask.addEventListener('click', function () {
+    for (let i = 0; i < 100000; i++) {
+      setTimeout(() => {
+        macrotask.innerHTML = i;
+      }, 0)
+    }
+  })
+
+  microtask.addEventListener('click', function () {
+    for (let i = 0; i < 100000; i++) {
+      queueMicrotask(() => {
+        microtask.innerHTML = i;
+      })
+    }
+  })
+</script>
+
+</html>
